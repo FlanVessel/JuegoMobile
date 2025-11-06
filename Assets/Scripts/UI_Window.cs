@@ -1,81 +1,94 @@
 using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class UI_Window : MonoBehaviour
 {
-    [Header("Settings")]
+    #region properties
+    [Header("Settings")] 
     [SerializeField] private string windowID;
     [SerializeField] private Canvas windowCanvas;
     [SerializeField] private CanvasGroup windowCanvasGroup;
-
+    
     [Header("Options")]
     [SerializeField] private bool hideOnStart = true;
-    [SerializeField] public float animationTime = 0.5f;
-    [SerializeField] public Ease easeHide = Ease.Flash;
-    [SerializeField] public Ease easeShow = Ease.InBack;
-
+    [SerializeField] private float animationTime = 0.5f;
+    // Animation easing types from DOTween 
+    [SerializeField] private Ease easeShow = Ease.InBack;
+    [SerializeField] private Ease easeHide = Ease.OutBack;
+    
+    public UnityEvent OnStartShowingUI { get; private set; } = new UnityEvent();
+    public UnityEvent OnFinishedShowingUI {get; private set;} = new UnityEvent();
+    public UnityEvent OnStartHidingUI { get; private set; } = new UnityEvent();
+    public UnityEvent OnFinishedHidingUI { get; private set; } = new UnityEvent();
     public bool IsShowing { get; private set; } = false;
-
     public string WindowID => windowID;
+    public float AnimationTime => animationTime;
+    #endregion
 
-    public void Start()
+    #region unity methods
+    private void Start()
     {
         Initialize();
     }
+    #endregion
 
+    #region implementation
+    
+    /// <summary>
+    ///  Initializes the window, hiding it if hideOnStart is true.
+    /// </summary>
     public virtual void Initialize()
     {
-        if (hideOnStart) Hide(true);
+        if(hideOnStart) Hide(true);
     }
-
+    
+    /// <summary>
+    ///  Shows the window UI.
+    /// </summary>
+    /// <param name="instant"> SET TRUE to show instantly. </param>
     [Button]
     public virtual void Show(bool instant = false)
     {
-        //windowCanvas.gameObject.SetActive(true);
-
-        //Si la ventana esta ahi, no haces nada
-        if (IsShowing) return;
-
-        //Activamos el objeto
+        // if the window is already showing, do nothing
+        if(IsShowing) return;
+        
         windowCanvas.gameObject.SetActive(true);
-
+        
         if (instant)
         {
-
-            //Mostrar la ventana inmediatamente
-            windowCanvasGroup.transform.DOScale(Vector3.one, 0f);
-
+            //show the window instantly
+            windowCanvasGroup.transform.DOScale(Vector3.one, 0);
         }
         else
         {
-
-            //Mostrar la ventana con animation time
+            // show the window with animation time
             windowCanvasGroup.transform.DOScale(Vector3.one, animationTime).SetEase(easeShow);
             IsShowing = true;
-
         }
     }
-
+    
+    /// <summary>
+    /// Hides the window UI.
+    /// </summary>
+    /// <param name="instant"> SET TRUE to hide instantly.</param>
     [Button]
     public virtual void Hide(bool instant = false)
     {
-        //windowCanvas.gameObject.SetActive(false);
-
         if (instant)
         {
-
-            //Ocultar la ventana inmediatamente
+            //hide the window instantly
             windowCanvasGroup.transform.DOScale(Vector3.zero, 0f);
-
+            DisableCanvas();
         }
         else
         {
-
-            //Ocultar la ventana con animation time
+            // hide the window with animation time
             windowCanvasGroup.transform.DOScale(Vector3.zero, animationTime).SetEase(easeHide).OnComplete(DisableCanvas);
-
         }
+            
     }
 
     private void DisableCanvas()
@@ -83,4 +96,5 @@ public class UI_Window : MonoBehaviour
         windowCanvas.gameObject.SetActive(false);
         IsShowing = false;
     }
+    #endregion
 }

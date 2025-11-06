@@ -1,16 +1,26 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Profile : UI_Window
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Boton Cerrar")]
+    [SerializeField] private Button _buttonBack;
+
+    void Awake()
     {
-        
+        Regresemos();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Regresemos()
     {
-        
+        if (_buttonBack)
+        {
+            _buttonBack.onClick.AddListener(CerrarVentana);
+        }
+    }
+    
+    private void CerrarVentana()
+    {
+        UI_Manager.Instance.HideUI(WindowID);
     }
 }
