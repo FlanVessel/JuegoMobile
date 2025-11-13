@@ -18,13 +18,12 @@ public class UI_PrincipalMenu : UI_Window
     [SerializeField] private Button _buttonShop;
     [SerializeField] private Button _buttonFarm;
 
-    private static readonly string PP_KEY = "principal_clicker";
     private BigInteger count = BigInteger.Zero;
 
     void Awake()
     {
         ConectarBotones();
-        CargarContador();
+        count = SaveService.Points;
         ActualizarEtiqueta();
     }
 
@@ -58,8 +57,9 @@ public class UI_PrincipalMenu : UI_Window
     private void Incrementar()
     {
         count += BigInteger.One;
+        SaveService.Points = count;
+        SaveService.Save();
         ActualizarEtiqueta();
-        GuardarContador();
     }
 
     private void ActualizarEtiqueta()
@@ -69,29 +69,21 @@ public class UI_PrincipalMenu : UI_Window
         _textCounterGato.text = FormatearBig(count);
     }
 
-    private void GuardarContador()
-    {
-
-        PlayerPrefs.SetString(PP_KEY, count.ToString());
-        PlayerPrefs.Save();
-    }
-
-    private void CargarContador()
-    {
-        var s = PlayerPrefs.GetString(PP_KEY, "0");
-
-        if (!BigInteger.TryParse(s, out count))
-            count = BigInteger.Zero;
-    }
-
     private string FormatearBig(BigInteger value)
     {
-        if (value <= long.MaxValue && value >= long.MinValue)
+        if (value < 1000) return value.ToString();
+
+        string[] suffixes = { "", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc" };
+        int tier = 0;
+        BigInteger temp = value;
+
+        while (temp >= 1000 && tier < suffixes.Length - 1)
         {
-            long v = (long)value;
-            return v.ToString("N0");
+            temp /= 1000;
+            tier++;
         }
 
-        return value.ToString();
+        double shortVal = (double)value / System.Math.Pow(1000, tier);
+        return $"{shortVal:0.##}{suffixes[tier]}";
     }
 }
