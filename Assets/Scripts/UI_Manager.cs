@@ -78,7 +78,13 @@ public static class WindowsIDs
     public static string UI_Granjas = "Granjas";
     public static string UI_Tienda = "Tienda";
     public static string UI_ElegirGranja = "ElegirGranja";
+
     public static string UI_ElegirTienda = "ElegirTienda";
+    public static string UI_ElegirTienda2 = "ElegirTienda2";
+    public static string UI_ElegirTienda3 = "ElegirTienda3";
+    public static string UI_ElegirTienda4 = "ElegirTienda4";
+    public static string UI_ElegirTienda5 = "ElegirTienda5";
+    public static string UI_ElegirTienda6 = "ElegirTienda6";
 
 
 }

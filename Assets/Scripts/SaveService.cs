@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Numerics;
-using System.Linq;
 using System.IO;
 
 public class SaveService
@@ -68,7 +67,29 @@ public class SaveService
         set
         {
             Data.points = value.ToString();
+            Debug.Log("Este es el valor de: " + Data.points);
         }
+    }
+
+    public static void AddPoints(BigInteger delta)
+    {
+        Points = Points + delta;
+    }
+
+    public static bool TrySpend(BigInteger cost)
+    {
+        var current = Points;
+        if (current < cost) return false;
+        Points = current - cost;
+        return true;
+    }
+
+    // ---- Compra única del primer item de tienda ----
+
+    public static bool AutoClickBought
+    {
+        get => Data.autoClickBought;
+        set => Data.autoClickBought = value;
     }
 
 }

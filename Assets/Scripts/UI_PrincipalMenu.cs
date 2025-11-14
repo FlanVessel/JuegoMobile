@@ -18,7 +18,7 @@ public class UI_PrincipalMenu : UI_Window
     [SerializeField] private Button _buttonShop;
     [SerializeField] private Button _buttonFarm;
 
-    private BigInteger count = BigInteger.Zero;
+    private BigInteger count = BigInteger.Zero;  //Empezamos con el contador en 0. Ya que le estamos diciendo a count que es igual a 0.
 
     void Awake()
     {
@@ -56,10 +56,12 @@ public class UI_PrincipalMenu : UI_Window
 
     private void Incrementar()
     {
-        count += BigInteger.One;
-        SaveService.Points = count;
-        SaveService.Save();
-        ActualizarEtiqueta();
+        count += BigInteger.One;  //Sumamos uno
+
+        SaveService.Points = count;  
+        SaveService.Save();  //lo actualizmaos en el JSON
+
+        ActualizarEtiqueta();  //Actualizamos el texto
     }
 
     private void ActualizarEtiqueta()
@@ -73,7 +75,7 @@ public class UI_PrincipalMenu : UI_Window
     {
         if (value < 1000) return value.ToString();
 
-        string[] suffixes = { "", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc" };
+        string[] suffixes = { "", "K", "M", "B", "T", "Qa", "Qi" };
         int tier = 0;
         BigInteger temp = value;
 

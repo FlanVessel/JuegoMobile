@@ -5,14 +5,9 @@ using System;
 [Serializable]
 public class PlayerSave
 {
+    // Puntos guardados como texto (para BigInteger)
     public string points = "0";
 
-    [Serializable]
-    public class UpgradeState
-    {
-        public string id;   // identificador del upgrade
-        public int level;   // cuántas veces se ha comprado
-    }
-
-    public List<UpgradeState> upgrades = new();
+    // Compra única del primer ítem de tienda (el gato auto-click)
+    public bool autoClickBought = false;
 }

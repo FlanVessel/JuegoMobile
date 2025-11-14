@@ -2862,7 +2862,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 793352648}
   m_Direction: 2
   m_Value: 1.0000002
-  m_Size: 0.47238186
+  m_Size: 0.40593562
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6469,8 +6469,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 748360326}
   m_HandleRect: {fileID: 748360325}
   m_Direction: 2
-  m_Value: 1.0000011
-  m_Size: 0.81202
+  m_Value: 1.0000006
+  m_Size: 0.6977996
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12472,7 +12472,12 @@ MonoBehaviour:
   animationTime: 0.5
   easeShow: 26
   easeHide: 32
-  _contentRoot: {fileID: 786931245}
+  _itemButton1: {fileID: 788781683}
+  _itemButton2: {fileID: 0}
+  _itemButton3: {fileID: 0}
+  _itemButton4: {fileID: 0}
+  _itemButton5: {fileID: 0}
+  _itemButton6: {fileID: 0}
   _buttonMenu: {fileID: 1869191531}
 --- !u!1 &1515093083
 GameObject:
@@ -16096,7 +16101,9 @@ MonoBehaviour:
   easeShow: 26
   easeHide: 32
   _buttonBack: {fileID: 1616318649}
+  _textPrecio: {fileID: 1402425352}
   _buttonBuy: {fileID: 700048598}
+  baseCost: 50
 --- !u!1 &2093658206
 GameObject:
   m_ObjectHideFlags: 0
