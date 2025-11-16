@@ -2,9 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Numerics;
 using TMPro;
-using System;
 
-public class UI_ElegirTienda : UI_Window
+public class UI_ElegirTienda2 : UI_Window
 {
     [Header("Boton Cerrar")]
     [SerializeField] private Button _buttonBack;
@@ -12,7 +11,7 @@ public class UI_ElegirTienda : UI_Window
     [Header("Boton Comprar")]
     [SerializeField] private TMP_Text _textPrecio;
     [SerializeField] private Button _buttonBuy;
-    [SerializeField] private long baseCost = 50;
+    [SerializeField] private long baseCost = 500;
 
     void Awake()
     {
@@ -42,7 +41,7 @@ public class UI_ElegirTienda : UI_Window
         if (_textPrecio)
             _textPrecio.text = FormatearBig(cost);
 
-        if (SaveService.AutoClickBought)
+        if (SaveService.Tienda2Bought) //modificamos
         {
             _buttonBuy.interactable = false;
             _textPrecio.text = "Comprado";
@@ -55,14 +54,16 @@ public class UI_ElegirTienda : UI_Window
         BigInteger cost = new BigInteger(baseCost);
 
         // Si ya está comprada, no hacemos nada
-        if (SaveService.AutoClickBought)
+        if (SaveService.Tienda2Bought)
             return;
 
         // Intentar gastar puntos
         if (!SaveService.TrySpend(cost))
             return;
 
-        GameManager.Instance.MarcarPrimerItemComprado();
+        SaveService.Tienda2Bought = true;
+        
+        GameManager.Instance.MarcarItem2Comprado();
 
         // Actualizar UI (desactiva botón, cambia texto, etc.)
         RefrescarUI();
@@ -90,5 +91,4 @@ public class UI_ElegirTienda : UI_Window
         double shortVal = (double)value / System.Math.Pow(1000, tier);
         return $"{shortVal:0.##}{suffixes[tier]}";
     }
-
 }

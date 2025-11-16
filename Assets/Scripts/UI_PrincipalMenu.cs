@@ -13,6 +13,8 @@ public class UI_PrincipalMenu : UI_Window
     [Header("Boton Central y Contador")]
     [SerializeField] private Button _buttonGato;
     [SerializeField] private TMP_Text _textCounterGato;
+    [SerializeField] private GameObject _imagenActivar;
+    [SerializeField] private GameObject _imagenActivar2;
 
     [Header("Botones inferiores")]
     [SerializeField] private Button _buttonShop;
@@ -25,6 +27,23 @@ public class UI_PrincipalMenu : UI_Window
         ConectarBotones();
         count = SaveService.Points;
         ActualizarEtiqueta();
+    }
+
+    private void OnEnable()
+    {
+        RevisarCompra();
+    }
+    
+    private void RevisarCompra()
+    {
+        Debug.Log("Comprobando referencias UI_PrincipalMenu...");
+
+    Debug.Log("_imagenActivar = " + (_imagenActivar == null ? "NULL" : "OK"));
+    Debug.Log("_imagenActivar2 = " + (_imagenActivar2 == null ? "NULL" : "OK"));
+    Debug.Log("GameManager.Instance = " + (GameManager.Instance == null ? "NULL" : "OK"));
+
+    _imagenActivar.SetActive(GameManager.Instance.PrimerItemComprado);
+    _imagenActivar2.SetActive(GameManager.Instance.item2Comprado);
     }
 
     private void ConectarBotones()
@@ -87,5 +106,11 @@ public class UI_PrincipalMenu : UI_Window
 
         double shortVal = (double)value / System.Math.Pow(1000, tier);
         return $"{shortVal:0.##}{suffixes[tier]}";
+    }
+
+    public void RefrescarPuntosExternos()
+    {
+        count = SaveService.Points;
+        ActualizarEtiqueta();
     }
 }

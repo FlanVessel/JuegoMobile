@@ -92,4 +92,10 @@ public class SaveService
         set => Data.autoClickBought = value;
     }
 
+    public static bool Tienda2Bought
+    {
+        get => Data.tienda2Bought;
+        set => Data.tienda2Bought = value;
+    }
+
 }
