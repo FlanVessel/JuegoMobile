@@ -14,9 +14,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-        // Cargar desde el JSON al iniciar la escena
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         PrimerItemComprado = SaveService.AutoClickBought;
         item2Comprado = SaveService.Tienda2Bought;
         item3Comprado = SaveService.Tienda3Bought;

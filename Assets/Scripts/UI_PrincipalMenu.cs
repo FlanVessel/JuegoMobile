@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Numerics;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections; 
 
 public class UI_PrincipalMenu : UI_Window
 {
@@ -33,7 +34,28 @@ public class UI_PrincipalMenu : UI_Window
 
     private void OnEnable()
     {
-        RevisarCompra();
+        if (GameManager.Instance != null)
+        {
+            RevisarCompra();
+        }
+        else
+        {
+            StartCoroutine(EsperarGameManager());
+        }
+    }
+
+    private IEnumerator EsperarGameManager()
+    {
+        yield return null;
+
+        if (GameManager.Instance != null)
+        {
+            RevisarCompra();
+        }
+        else
+        {
+            Debug.LogError("GameManager es NULL, Revisa crack!!!");
+        }
     }
     
     private void RevisarCompra()
@@ -44,10 +66,15 @@ public class UI_PrincipalMenu : UI_Window
         Debug.Log("_imagenActivar2 = " + (_imagenActivar2 == null ? "NULL" : "OK"));
         Debug.Log("GameManager.Instance = " + (GameManager.Instance == null ? "NULL" : "OK"));
 
-        _imagenActivar.SetActive(GameManager.Instance.PrimerItemComprado);
-        _imagenActivar2.SetActive(GameManager.Instance.item2Comprado);
-        _imagenActivar3.SetActive(GameManager.Instance.item3Comprado);
-        _imagenActivar4.SetActive(GameManager.Instance.item4Comprado);
+        if (GameManager.Instance == null)
+        {
+            Debug.LogWarning("RevisarCompra() llamando antes de que exista GameManager");
+        }
+
+        _imagenActivar?.SetActive(GameManager.Instance.PrimerItemComprado);
+        _imagenActivar2?.SetActive(GameManager.Instance.item2Comprado);
+        _imagenActivar3?.SetActive(GameManager.Instance.item3Comprado);
+        _imagenActivar4?.SetActive(GameManager.Instance.item4Comprado);
     }
 
     private void ConectarBotones()
