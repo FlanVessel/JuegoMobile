@@ -98,4 +98,16 @@ public class SaveService
         set => Data.tienda2Bought = value;
     }
 
+    public static bool Tienda3Bought
+    {
+        get => Data.tienda3Bought;
+        set => Data.tienda3Bought = value;
+    }
+
+    public static bool Tienda4Bought
+    {
+        get => Data.tienda4Bought;
+        set => Data.tienda4Bought = value;
+    }
+
 }

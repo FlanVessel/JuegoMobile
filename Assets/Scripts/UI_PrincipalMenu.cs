@@ -15,6 +15,8 @@ public class UI_PrincipalMenu : UI_Window
     [SerializeField] private TMP_Text _textCounterGato;
     [SerializeField] private GameObject _imagenActivar;
     [SerializeField] private GameObject _imagenActivar2;
+    [SerializeField] private GameObject _imagenActivar3;
+    [SerializeField] private GameObject _imagenActivar4;
 
     [Header("Botones inferiores")]
     [SerializeField] private Button _buttonShop;
@@ -38,12 +40,14 @@ public class UI_PrincipalMenu : UI_Window
     {
         Debug.Log("Comprobando referencias UI_PrincipalMenu...");
 
-    Debug.Log("_imagenActivar = " + (_imagenActivar == null ? "NULL" : "OK"));
-    Debug.Log("_imagenActivar2 = " + (_imagenActivar2 == null ? "NULL" : "OK"));
-    Debug.Log("GameManager.Instance = " + (GameManager.Instance == null ? "NULL" : "OK"));
+        Debug.Log("_imagenActivar = " + (_imagenActivar == null ? "NULL" : "OK"));
+        Debug.Log("_imagenActivar2 = " + (_imagenActivar2 == null ? "NULL" : "OK"));
+        Debug.Log("GameManager.Instance = " + (GameManager.Instance == null ? "NULL" : "OK"));
 
-    _imagenActivar.SetActive(GameManager.Instance.PrimerItemComprado);
-    _imagenActivar2.SetActive(GameManager.Instance.item2Comprado);
+        _imagenActivar.SetActive(GameManager.Instance.PrimerItemComprado);
+        _imagenActivar2.SetActive(GameManager.Instance.item2Comprado);
+        _imagenActivar3.SetActive(GameManager.Instance.item3Comprado);
+        _imagenActivar4.SetActive(GameManager.Instance.item4Comprado);
     }
 
     private void ConectarBotones()
@@ -112,5 +116,12 @@ public class UI_PrincipalMenu : UI_Window
     {
         count = SaveService.Points;
         ActualizarEtiqueta();
+    }
+
+    public override void Show(bool instant = false)
+    {
+        base.Show(instant);
+        RevisarCompra();
+        RefrescarPuntosExternos();
     }
 }

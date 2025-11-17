@@ -32,12 +32,6 @@ public class UI_Tienda : UI_Window
 
     private void AbrirElegir(string windowID)
     {
-        if (windowID == WindowsIDs.UI_ElegirTienda && SaveService.AutoClickBought)
-        {
-            Debug.Log("Ya está comprado, no se abre la UI.");
-            return;
-        }
-
         UI_Manager.Instance.ShowUI(windowID);
     }
 
