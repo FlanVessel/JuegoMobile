@@ -18,6 +18,8 @@ public class UI_PrincipalMenu : UI_Window
     [SerializeField] private GameObject _imagenActivar2;
     [SerializeField] private GameObject _imagenActivar3;
     [SerializeField] private GameObject _imagenActivar4;
+    [SerializeField] private GameObject _imagenActivar5;
+    [SerializeField] private GameObject _imagenActivar6;
 
     [Header("Botones inferiores")]
     [SerializeField] private Button _buttonShop;
@@ -75,6 +77,8 @@ public class UI_PrincipalMenu : UI_Window
         _imagenActivar2?.SetActive(GameManager.Instance.item2Comprado);
         _imagenActivar3?.SetActive(GameManager.Instance.item3Comprado);
         _imagenActivar4?.SetActive(GameManager.Instance.item4Comprado);
+        _imagenActivar5?.SetActive(GameManager.Instance.item5Comprado);
+        _imagenActivar6?.SetActive(GameManager.Instance.item6Comprado);
     }
 
     private void ConectarBotones()

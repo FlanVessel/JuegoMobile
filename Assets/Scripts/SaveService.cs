@@ -110,4 +110,22 @@ public class SaveService
         set => Data.tienda4Bought = value;
     }
 
+    public static bool Tienda5Bought
+    {
+        get => Data.tienda5Bought;
+        set => Data.tienda5Bought = value;
+    }
+
+    public static bool Tienda6Bought
+    {
+        get => Data.tienda6Bought;
+        set => Data.tienda6Bought = value;
+    }
+
+    public static int GranjaNivel
+    {
+        get => Data.granjaNivel;
+        set => Data.granjaNivel = value;
+    }
+
 }

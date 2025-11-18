@@ -15,4 +15,10 @@ public class PlayerSave
     public bool tienda3Bought = false;
 
     public bool tienda4Bought = false;
+
+    public bool tienda5Bought = false;
+
+    public bool tienda6Bought = false;
+
+    public int granjaNivel = 0;
 }

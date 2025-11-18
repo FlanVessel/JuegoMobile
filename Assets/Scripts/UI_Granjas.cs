@@ -3,7 +3,7 @@ using UnityEngine.UI;
 public class UI_Granjas : UI_Window
 {
     [Header("ScrollView / Content")]
-    [SerializeField] private Transform _contentRoot;
+    [SerializeField] private Button _buttonGranja1;
 
     [Header("Botones inferiores")]
     [SerializeField] private Button _buttonMenu;
@@ -16,18 +16,12 @@ public class UI_Granjas : UI_Window
 
     private void ConectarContenido()
     {
-        if (!_contentRoot) return;
-
-        var buttons = _contentRoot.GetComponentsInChildren<Button>(true);
-        foreach (var b in buttons)
-        {
-            b.onClick.AddListener(AbrirElegirGranja);
-        }
+        if (_buttonGranja1) _buttonGranja1.onClick.AddListener(() => AbrirElegirGranja(WindowsIDs.UI_ElegirGranja));
     }
 
-    private void AbrirElegirGranja()
+    private void AbrirElegirGranja(string windowID)
     {
-        UI_Manager.Instance.ShowUI(WindowsIDs.UI_ElegirGranja);
+        UI_Manager.Instance.ShowUI(windowID);
     }
 
     private void ConectarBotones()
