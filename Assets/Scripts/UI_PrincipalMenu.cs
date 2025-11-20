@@ -34,6 +34,14 @@ public class UI_PrincipalMenu : UI_Window
         ActualizarEtiqueta();
     }
 
+    private void Update()
+    {
+        if (SaveService.Points != count)
+        {
+            RefrescarPuntosExternos();
+        }
+    }
+
     private void OnEnable()
     {
         if (GameManager.Instance != null)
