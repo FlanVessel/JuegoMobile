@@ -1,12 +1,23 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class UI_Granjas : UI_Window
 {
     [Header("ScrollView / Content")]
+
+    [Header("Primer Boton y Texto")]
     [SerializeField] private Button _buttonGranja1;
+    [SerializeField] private TMP_Text _textGranja1;
+    [SerializeField] private int costoBase = 100;
 
     [Header("Botones inferiores")]
     [SerializeField] private Button _buttonMenu;
+
+    void Update()
+    {
+        RefrescarUI();
+    }
 
     void Awake()
     {
@@ -33,5 +44,29 @@ public class UI_Granjas : UI_Window
     {
         UI_Manager.Instance.HideUI(WindowID);
         UI_Manager.Instance.ShowUI(windowID);
+    }
+
+    public void RefrescarUI()
+    {
+        if (_textGranja1 == null)
+            return;
+
+        if (GameManager.Instance == null)
+        {
+            _textGranja1.text = $"Costo: {costoBase}";
+            return;
+        }
+
+        int nivel = GameManager.Instance.granjaNivel;
+
+        if (nivel == 0)
+        {
+            _textGranja1.text = $"Costo: {costoBase}";
+        }
+        else
+        {
+            int costoMejora = costoBase * (nivel + 1);
+            _textGranja1.text = $"Nivel {nivel} – Mejora: {costoMejora}";
+        }
     }
 }

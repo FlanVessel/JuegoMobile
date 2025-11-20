@@ -118,9 +118,10 @@ public class UI_ElegirGranja : UI_Window
             int costoMejora = costoBase * (nivel + 1);
             int produccion = nivel; // 1, 2, 3...  
 
-            _textCosto.text = "Costo mejora: " + costoMejora;
-            _textNivel.text = "Nivel: " + nivel;
+            _textNivel.text = "Mejora: " + costoMejora;
+            Debug.Log("Costo Mejora: " + costoMejora);
             _textProduccion.text = "Producción: " + produccion + " / seg";
+            Debug.Log("Producción calculada: " + produccion);
 
             _buttonComprar.gameObject.SetActive(false);
             _buttonMejorar.gameObject.SetActive(true);
