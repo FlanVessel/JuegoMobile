@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("Estado de Compras de Tienda")]
     public bool PrimerItemComprado;
 
     public bool item2Comprado;
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public bool item6Comprado;
 
-
+    [Header("Estado de Compras de Granja")]
     public int granjaNivel = 0;   // 0 = no comprada, 1-10 = niveles
     public int granjaProduccion = 0; // Puntos por segundo actuales
     private float timerGranja = 0f;

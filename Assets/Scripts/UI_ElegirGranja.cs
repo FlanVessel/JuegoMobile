@@ -18,7 +18,7 @@ public class UI_ElegirGranja : UI_Window
 
     [Header("Texto de Produccion")]
     [SerializeField] private TMP_Text _textProduccion;
-
+    [SerializeField] private int nivelMaximo = 10;
     [SerializeField] private int costoBase = 100;
 
     void Awake()
@@ -113,15 +113,28 @@ public class UI_ElegirGranja : UI_Window
             _buttonComprar.gameObject.SetActive(true);
             _buttonMejorar.gameObject.SetActive(false);
         }
+        else if (nivel >= nivelMaximo)
+        {
+            _textCosto.text = "Nivel máximo alcanzado";
+            _textNivel.text = $"Nivel: {nivelMaximo} (MAX)";
+            _textProduccion.text = $"Producción: {nivelMaximo} / seg";
+
+            _buttonComprar.gameObject.SetActive(false);
+            _buttonMejorar.gameObject.SetActive(false);
+        }
         else
         {
             int costoMejora = costoBase * (nivel + 1);
             int produccion = nivel; // 1, 2, 3...  
 
-            _textNivel.text = "Mejora: " + costoMejora;
-            Debug.Log("Costo Mejora: " + costoMejora);
-            _textProduccion.text = "Producción: " + produccion + " / seg";
-            Debug.Log("Producción calculada: " + produccion);
+            _textCosto.text = $"Costo mejora: {costoMejora}";
+            _textNivel.text = $"Nivel: {nivel}";
+            _textProduccion.text = $"Producción: {produccion} / seg";
+
+            // _textNivel.text = "Mejora: " + costoMejora;
+            // Debug.Log("Costo Mejora: " + costoMejora);
+            // _textProduccion.text = "Producción: " + produccion + " / seg";
+            // Debug.Log("Producción calculada: " + produccion);
 
             _buttonComprar.gameObject.SetActive(false);
             _buttonMejorar.gameObject.SetActive(true);
