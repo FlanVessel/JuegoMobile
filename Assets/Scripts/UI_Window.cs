@@ -2,7 +2,6 @@ using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class UI_Window : MonoBehaviour
 {

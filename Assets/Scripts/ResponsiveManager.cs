@@ -2,7 +2,6 @@ using System;
 using Dino.UtilityTools.Singleton;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections.Generic;
 
 public class ResponsiveManager : Singleton<ResponsiveManager>
 {

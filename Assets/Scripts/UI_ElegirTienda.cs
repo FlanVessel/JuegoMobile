@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Numerics;
 using TMPro;
-using System;
 
 public class UI_ElegirTienda : UI_Window
 {
