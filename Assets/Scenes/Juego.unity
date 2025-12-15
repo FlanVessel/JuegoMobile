@@ -13873,18 +13873,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_Manager
   dontDestroyOnLoad: 1
   uiWindows:
-  - {fileID: 994418924}
-  - {fileID: 1970538172}
   - {fileID: 182416056}
   - {fileID: 494754590}
   - {fileID: 613688679}
   - {fileID: 830540024}
   - {fileID: 968464241}
+  - {fileID: 994418924}
   - {fileID: 1305573361}
   - {fileID: 1512512409}
   - {fileID: 1643824785}
   - {fileID: 1756974942}
   - {fileID: 1927559373}
+  - {fileID: 1970538172}
   - {fileID: 2088225077}
 --- !u!4 &1387853927
 Transform:
