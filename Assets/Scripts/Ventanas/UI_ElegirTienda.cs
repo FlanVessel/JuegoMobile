@@ -41,7 +41,7 @@ public class UI_ElegirTienda : UI_Window
         if (_textPrecio)
             _textPrecio.text = FormatearBig(cost);
 
-        if (ShopService.IsBought(1))
+        if (SaveService.AutoClickBought)
         {
             _buttonBuy.interactable = false;
             _textPrecio.text = "Comprado";
@@ -54,13 +54,15 @@ public class UI_ElegirTienda : UI_Window
         BigInteger cost = new BigInteger(baseCost);
 
         // Si ya está comprada, no hacemos nada
-        if (ShopService.IsBought(1))
+        if (SaveService.AutoClickBought)
             return;
 
         // Intentar gastar puntos
-        if (!CurrencyService.TrySpend(cost))
+        if (!SaveService.TrySpend(cost))
             return;
 
+        SaveService.AutoClickBought = true;
+        
         GameManager.Instance.MarcarPrimerItemComprado();
 
         // Actualizar UI (desactiva botón, cambia texto, etc.)

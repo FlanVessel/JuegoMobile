@@ -1,5 +1,7 @@
+// Maneja compras de Tienda
 public static class ShopService
 {
+    // Preguntamos si un item esta comprado (atravez de IDs)
     public static bool IsBought(int itemId)
     {
         var data = SaveRepository.Data;
@@ -16,6 +18,7 @@ public static class ShopService
         };
     }
 
+    // Marca comprado y guarda
     public static void Buy(int itemId)
     {
         var data = SaveRepository.Data;
