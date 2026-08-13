@@ -1,0 +1,13 @@
+﻿<Solution>
+  <Project Path="NaughtyAttributes.Test.csproj" />
+  <Project Path="NaughtyAttributes.Core.csproj" />
+  <Project Path="LeanCommon.csproj" />
+  <Project Path="LeanTransition.csproj" />
+  <Project Path="NaughtyAttributes.Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="CW.Common.csproj" />
+  <Project Path="Assembly-CSharp-firstpass.csproj" />
+  <Project Path="LeanGUI.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="LeanTransition.Editor.csproj" />
+</Solution>
